@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider, Mutation } from 'react-apollo';
 import Tasks from './Tasks';
+import gql from 'graphql-tag';
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
 });
 
-class App extends Component {
+class App extends Component 
+{
   constructor(props)
   {
     super(props);
@@ -36,8 +38,18 @@ class App extends Component {
     }
     else
     {
+      //THIS IS WHERE YOU WERE LAST TRYING TO GET THE ADDITEM MUTATION WORKING 
       var warning = document.getElementById('warning');
       warning.style.visibility = "hidden";
+      <Mutation mutation={ADD_TODO}>
+      {(addItem, {data})=> (
+        addItem({variables:{item:this.state.term,isDone:false}})
+      )}
+      </Mutation>
+      this.setState(
+      {
+        term: ''
+      });
     }
   }
 
@@ -61,13 +73,27 @@ class App extends Component {
             <p id="warning"> Please type in a unique item to add it to the To-Do list!</p>
             <button>Submit</button>
           </form>
-          <table className="table-bordered table-hover">
-            <Tasks />
-          </table>
+          <div className="tableDiv">
+            <table className="table-bordered table-hover">
+              <tbody>
+                <Tasks />
+              </tbody>
+            </table>
+          </div>
         </div>
       </ApolloProvider>
     );
   }
 }
+
+const ADD_TODO = gql`
+  mutation addItem($item: String!, $isDone: Boolean!){
+    addItem(item: $item, isDone: $isDone){
+      id
+      item
+      isDone
+    }
+  }
+`;
 
 export default App;

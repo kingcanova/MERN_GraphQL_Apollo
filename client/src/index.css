@@ -24,18 +24,26 @@ form p{
     margin-right: auto;
 
 }
+p {
+    margin: 50px;
+}
 
-.checked {
+td input {
+    margin-top: 20px;
+    align-content: center;
+}
+
+input:checked ~ p{
     text-decoration-line: line-through;
     color: green;
 }
 
-.unchecked {
+input ~ p{
     text-decoration-line: none;
     color:red;
 }
 
-th, td {
+th, td, tr {
     padding-left: 20px;
     padding-right: 20px;
     border-bottom: 1px solid #ddd;
@@ -47,4 +55,8 @@ th, td {
 }
 
 tr:hover {background-color: #f5f5f5;}
+
+input[type="checkbox"] {
+    margin-right: 20px;
+}
 
