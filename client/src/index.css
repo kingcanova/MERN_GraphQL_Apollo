@@ -3,3 +3,48 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+form p{
+    visibility: hidden;
+    color: crimson;
+}
+
+.tableDiv table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    border-style: solid;
+    border-color: black;
+    color: red;
+    text-decoration-line: none;
+}
+
+.tableDiv {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.checked {
+    text-decoration-line: line-through;
+    color: green;
+}
+
+.unchecked {
+    text-decoration-line: none;
+    color:red;
+}
+
+th, td {
+    padding-left: 20px;
+    padding-right: 20px;
+    border-bottom: 1px solid #ddd;
+    text-align: left; 
+}
+
+.delete {
+    background-color: red;
+}
+
+tr:hover {background-color: #f5f5f5;}
+
