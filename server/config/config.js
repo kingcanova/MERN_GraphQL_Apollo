@@ -1,15 +1,14 @@
+var MongoClient = require('mongodb');
+
+// Connect to `to-do` mongo database
+var MONGO_URL = 'mongodb://testUser:password@localhost:27017/mern_practice';
+
+//export async function which gets tasks from tasks collection
 module.exports = {
-    //MongoDB configuration
-    development: {
-        db: 'mongodb://127.0.0.1/graphql',
-        app: {
-            name: 'graphql'
-        }
-    },
     production: {
-        db: 'mongodb://testUser:password@localhost:27017/mern_practice',
+        db: MONGO_URL,
         app: {
-            name: 'graphql'
+            name: 'MERN stack with GraphQL and Apollo'
         }
     }
 };

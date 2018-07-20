@@ -1,5 +1,6 @@
-import mongoose from 'mongoose';
-const Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var ObjectId = mongoose.Schema.Types.ObjectId;
 
 // create new instance of the mongoose.schema. the schema takes an
 // object that shows the shape of your database entries.
@@ -9,4 +10,7 @@ const itemSchema = new Schema({
 });
 
 // export our module to use in server.js
-export default mongoose.model('item', itemSchema);
+//'task' SUPER IMPORTANT WHEN USING MONGOOSE.MODEL 
+//YOU MUST EXPORT WITH THE COLLECTION NAME aka 'task' for tasks
+var Model = mongoose.model('task', itemSchema);
+module.exports = Model;

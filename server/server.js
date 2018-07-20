@@ -7,9 +7,9 @@ const app = express();
 
 app.use('*', cors());
 
-const userSchema = require('./graphql/index').userSchema;
+const itemSchema = require('./graphql/index').itemSchema;
 app.use('/graphql', cors(), graphqlHTTP({
-  schema: userSchema,
+  schema: itemSchema,
   rootValue: global,
   graphiql: true
 }));

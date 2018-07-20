@@ -4,9 +4,9 @@ var GraphQLID = require('graphql').GraphQLID;
 var GraphQLString = require('graphql').GraphQLString;
 var GraphQLBoolean = require('graphql').GraphQLBoolean;
 
-// User Type
+// Item Type
 exports.itemType = new GraphQLObjectType({
-  name: 'item',
+  name: 'task',
   fields: function () {
     return {
       id: {
