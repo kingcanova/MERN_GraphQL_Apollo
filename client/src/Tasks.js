@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Query } from "react-apollo";
 import gql from 'graphql-tag';
 import Item from './Item';
+import {graphql} from 'react-apollo';
 
 class Tasks extends Component
 {
@@ -30,7 +31,7 @@ class Tasks extends Component
                 if(loading) return <p>Loading...</p>;
                 if(error) return <p>Error loading data from GraphQl</p>;
                 return data.tasks.map((currentTask) => (
-                        <Item task={currentTask} />
+                        <Item task={currentTask}/>
                         )); 
             }}
             </Query>

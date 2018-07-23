@@ -5,10 +5,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider, Mutation } from 'react-apollo';
 import Tasks from './Tasks';
 import gql from 'graphql-tag';
-
-const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
-});
+import { graphql, compose } from 'react-apollo';
 
 class App extends Component 
 {
@@ -20,12 +17,13 @@ class App extends Component
       error: null,
       data: []
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
 
-  onSubmit = (event) => 
+  handleSubmit(e) 
   {
-    event.preventDefault();
+    e.preventDefault();
     if(this.state.term.replace(/^\s+/g, '').length < 1)
     {
       var warning = document.getElementById('warning');
@@ -34,26 +32,38 @@ class App extends Component
       {
         term: ''
       });
-            
+      return;
     }
     else
     {
       //THIS IS WHERE YOU WERE LAST TRYING TO GET THE ADDITEM MUTATION WORKING 
       var warning = document.getElementById('warning');
       warning.style.visibility = "hidden";
-      <Mutation mutation={ADD_TODO}>
-      {(addItem, {data})=> (
-        addItem({variables:{item:this.state.term,isDone:false}})
-      )}
-      </Mutation>
+
+      this.props.addItem(
+      {
+        variables:
+        {
+          item: this.state.term,
+          isDone: false
+        },
+        update: (store, {data: {addItem}}) => 
+        {
+          const data = store.readQuery({query: taskQuery});
+
+          data.tasks.push(addItem);
+
+          store.writeQuery({query: taskQuery, data});
+        }
+      }).then(function getResponse(response){
+        console.log(response);
+      });
       this.setState(
       {
         term: ''
       });
     }
   }
-
-
 
   onChange = (event) => 
   {
@@ -64,11 +74,16 @@ class App extends Component
 
   render() 
   {
+    //const loading = this.props.getTasks.loading;
+    //if(loading)
+    //{
+    //  return <div> loading </div>;
+    //}
+    //console.log(this.props.getTasks.tasks);
     return(
-      <ApolloProvider client={client}>
         <div className="App">
           <h1>To-Do List: </h1>
-          <form className="table" onSubmit={this.onSubmit}>
+          <form className="table" onSubmit={this.handleSubmit}>
             <input value={this.state.term} onChange={this.onChange}/>
             <p id="warning"> Please type in a unique item to add it to the To-Do list!</p>
             <button>Submit</button>
@@ -81,7 +96,6 @@ class App extends Component
             </table>
           </div>
         </div>
-      </ApolloProvider>
     );
   }
 }
@@ -96,4 +110,15 @@ const ADD_TODO = gql`
   }
 `;
 
-export default App;
+const taskQuery = gql`
+  query todoList {
+    tasks {
+      id
+      item
+      isDone
+    }
+  }
+  `;
+
+export default compose(graphql(taskQuery,{name: 'getTasks'}),
+graphql(ADD_TODO,{name: 'addItem'}))(App);
