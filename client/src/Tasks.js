@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Query } from "react-apollo";
 import gql from 'graphql-tag';
 import Item from './Item';
-import {graphql} from 'react-apollo';
+import {graphql, compose} from 'react-apollo';
 
 class Tasks extends Component
 {
@@ -10,34 +10,163 @@ class Tasks extends Component
     {
         super(props);
         this.state = {
-            items: []
+            term: '',
+            error: null,
+            tasks: this.props.data
         };
+        this.handleSubmit = this.handleSubmit.bind(this);
+        //console.log(this.state.tasks);
+        
+    }
+
+    handleSubmit(e) 
+    {
+        e.preventDefault();
+        if(this.state.term.replace(/^\s+/g, '').length < 1)
+        {
+            var warning = document.getElementById('warning');
+            warning.style.visibility = "visible";
+            this.setState(
+            {
+                term: ''
+            });
+            return;
+        }
+        else
+        {
+            var warning = document.getElementById('warning');
+            warning.style.visibility = "hidden";
+
+            this.props.addItem(
+            {
+                variables:
+                {
+                    item: this.state.term,
+                    isDone: false
+                },
+                update: (store, {data: {addItem}}) => 
+                {
+                    const data = store.readQuery({query: taskQuery});
+
+                    data.tasks.push(addItem);
+
+                    store.writeQuery({query: taskQuery, data});
+                    //console.log(data.tasks);
+                    //console.log(this.state.tasks);
+                    this.setState({
+                        term: '',
+                        tasks: data.tasks
+                    });
+                    //console.log(this.state.tasks);
+                }
+            }).then(function getResponse(response){
+                console.log(response);
+            });
+        }
+    }
+    onChange = (event) => 
+    {
+        this.setState({term: event.target.value});
+    }
+
+    checkTask(task)
+    {
+        this.props.updateItem({
+            variables:{
+                id: task.id,
+                item: task.item,
+                isDone: !task.isDone
+            },
+            update: (store, {data:{updateItem}}) =>
+            {
+                const data = this.state.tasks.slice();
+                const index = data.findIndex(task => task.id === updateItem.id);
+                data[index] = updateItem;
+                this.setState({
+                    tasks: data
+                });
+            }
+        });
+    }
+
+    deleteTask(task)
+    {
+        this.props.removeItem(
+        {
+            variables:
+            {
+                id: task.id
+            },
+        }).then(function getResponse(response)
+        {
+            console.log(response);
+        });
+        this.setState(prevState => ({
+            tasks: prevState.tasks.filter(el => el != task)
+        }));
+        //console.log(this.state.tasks);
+        
     }
 
     render()
     {
+        //console.log("GOT HERE", this.state.tasks);
         return(
-            <Query query={gql`
-            {
-                tasks{
-                    id
-                    item
-                    isDone
-                }
-            }
-            `}
-            >
-            {({loading,error,data}) =>{
-                if(loading) return <p>Loading...</p>;
-                if(error) return <p>Error loading data from GraphQl</p>;
-                return data.tasks.map((currentTask) => (
-                        <Item task={currentTask}/>
-                        )); 
-            }}
-            </Query>
-
+            <div className="dataCenter">
+                <form className="table" onSubmit={this.handleSubmit}>
+                    <input value={this.state.term} onChange={this.onChange}/>
+                    <p id="warning"> Please type in a unique item to add it to the To-Do list!</p>
+                    <button>Submit</button>
+                </form>
+                <div className="tableDiv">
+                    <table className="table-bordered table-hover">
+                        <tbody>
+                            <Item tasks={this.state.tasks} deleteTask={this.deleteTask.bind(this)} checkTask={this.checkTask.bind(this)}/>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         );
     }
 }
 
-export default Tasks;
+const taskQuery = gql`
+  query todoList {
+    tasks {
+      id
+      item
+      isDone
+    }
+  }`;
+
+const deleteItem = gql`
+    mutation removeItem($id: String!){
+        removeItem(id:$id){
+            id
+            item
+            isDone
+        }
+    }`;
+
+const ADD_TODO = gql`
+    mutation addItem($item: String!, $isDone: Boolean!){
+      addItem(item: $item, isDone: $isDone){
+        id
+        item
+        isDone
+      }
+    }`;
+
+const markCompletedQuery = gql`
+    mutation updateItem($id: String!, $item: String! $isDone: Boolean!) {
+        updateItem(id: $id, item: $item, isDone: $isDone){
+            id
+            item
+            isDone
+        }
+    }`;
+
+
+export default compose(graphql(deleteItem,{name: 'removeItem'}),
+graphql(taskQuery,{name: 'getTasks'}),
+graphql(ADD_TODO,{name: 'addItem'}),graphql(markCompletedQuery,{name: 'updateItem'}))(Tasks);
