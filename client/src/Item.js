@@ -14,12 +14,44 @@ class Item extends Component
         };
         this.deleteTask.bind(this.props.deleteTask);
         this.checkTask.bind(this.props.checkTask);
+        this.changeText.bind(this.props.changeText);
     }
 
 
     checkTask(task)
     {
         this.props.checkTask(task);
+    }
+
+    editButton(task)
+    {
+        var curElement = document.getElementById(task.id);
+        var newText = curElement.innerText;
+        var _this = this;
+        curElement.contentEditable = "true";
+        curElement.focus();
+        curElement.addEventListener('keypress', function(e)
+        {
+            var key = e.which || e.keyCode;
+            if(key === 13)
+            {
+                e.target.contentEditable = "false";
+                e.target.blur();
+                newText = e.target.innerText;
+                _this.changeText(task, newText);
+            }
+        });
+        curElement.addEventListener('blur', function(e)
+        {
+            e.target.contentEditable = "false";
+            newText = e.target.innerText;
+            _this.changeText(task,newText);
+            
+        });
+    }
+    changeText(task,newText)
+    {
+        this.props.changeText(task,newText)
     }
 
     deleteTask(task)
@@ -33,10 +65,11 @@ class Item extends Component
         return(
             this.props.tasks.map((currentTask)=>
                 <tr key={currentTask.id}>
-                    <td id={currentTask.id}>
+                    <td>
                         <input type="checkbox" checked={currentTask.isDone} className = "checkbox" onChange={() => this.checkTask(currentTask)} />
-                        <p>{currentTask.item}</p>
+                        <p id={currentTask.id}>{currentTask.item}</p>
                         <button onClick={()=> this.deleteTask(currentTask)}> Delete Item </button>
+                        <button onClick={()=> this.editButton(currentTask)}> Edit Item</button>
                     </td>
                 </tr>
             )

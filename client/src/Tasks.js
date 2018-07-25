@@ -15,6 +15,7 @@ class Tasks extends Component
             tasks: this.props.data
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.changeText = this.changeText.bind(this);
         //console.log(this.state.tasks);
         
     }
@@ -46,18 +47,10 @@ class Tasks extends Component
                 },
                 update: (store, {data: {addItem}}) => 
                 {
-                    const data = store.readQuery({query: taskQuery});
-
-                    data.tasks.push(addItem);
-
-                    store.writeQuery({query: taskQuery, data});
-                    //console.log(data.tasks);
-                    //console.log(this.state.tasks);
                     this.setState({
                         term: '',
-                        tasks: data.tasks
+                        tasks: [...this.state.tasks,addItem]
                     });
-                    //console.log(this.state.tasks);
                 }
             }).then(function getResponse(response){
                 console.log(response);
@@ -67,6 +60,26 @@ class Tasks extends Component
     onChange = (event) => 
     {
         this.setState({term: event.target.value});
+    }
+
+    changeText(task,newText)
+    {
+        this.props.updateItem({
+            variables:{
+                id: task.id,
+                item: newText,
+                isDone: task.isDone
+            },
+            update: (store, {data:{updateItem}}) =>
+            {
+                const data = this.state.tasks.slice();
+                const index = data.findIndex(task => task.id === updateItem.id);
+                data[index] = updateItem;
+                this.setState({
+                    tasks: data
+                });
+            }
+        });
     }
 
     checkTask(task)
@@ -121,7 +134,7 @@ class Tasks extends Component
                 <div className="tableDiv">
                     <table className="table-bordered table-hover">
                         <tbody>
-                            <Item tasks={this.state.tasks} deleteTask={this.deleteTask.bind(this)} checkTask={this.checkTask.bind(this)}/>
+                            <Item tasks={this.state.tasks} deleteTask={this.deleteTask.bind(this)} checkTask={this.checkTask.bind(this)} changeText={this.changeText.bind(this)}/>
                         </tbody>
                     </table>
                 </div>
