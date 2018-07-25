@@ -12,6 +12,9 @@
     "bootstrap": "^4.1.2",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
+    "jest": "23.3",
+    "mongodb": "^3.1.1",
+    "mongodb-memory-server": "^1.9.1",
     "react": "^16.4.1",
     "react-apollo": "^2.1.9",
     "react-dom": "^16.4.1",
@@ -21,6 +24,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "unittest": "jest"
   }
 }

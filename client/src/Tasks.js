@@ -57,7 +57,7 @@ class Tasks extends Component
             });
         }
     }
-    onChange = (event) => 
+    onChange = (event) =>
     {
         this.setState({term: event.target.value});
     }
