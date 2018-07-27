@@ -10,12 +10,16 @@
     "apollo-link": "^1.2.2",
     "apollo-link-http": "^1.5.4",
     "axios": "^0.18.0",
+    "babel-jest": "^23.4.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
     "bootstrap": "^4.1.2",
     "enzyme": "^3.3.0",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
     "graphql-tester": "0.0.5",
     "jest": "23.3",
+    "jest-cli": "^23.4.1",
     "mongodb": "^3.1.1",
     "mongodb-memory-server": "^1.9.1",
     "react": "^16.4.1",
@@ -23,6 +27,25 @@
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4",
     "react-test-renderer": "^16.4.1"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "./dist"
+    ],
+    "coverageReporters": [
+      "lcov",
+      "html"
+    ],
+    "transform": {
+      "\\.(gql|graphql)$": "jest-transform-graphql",
+      "\\.(css|scss)$": "jest-css-modules-transform",
+      ".*": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "^mongoose$": "<rootDir>/node_modules/mongoose"
+    }
   },
   "scripts": {
     "start": "react-scripts start",
