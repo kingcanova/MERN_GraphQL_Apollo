@@ -3,6 +3,7 @@ var GraphQLString = require('graphql').GraphQLString;
 var ItemType = require('../types/item');
 var ItemModel = require('../../models/item');
 
+//This is the schema for our remove method in graphql
 exports.remove = {
   type: ItemType.itemType,
   args: {

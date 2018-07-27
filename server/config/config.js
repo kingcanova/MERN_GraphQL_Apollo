@@ -1,6 +1,6 @@
-var MongoClient = require('mongodb');
+//This config.js file helps set up our local mongo database connection
 
-// Connect to `to-do` mongo database
+// Connect to `mern_practice` local mongo database
 var MONGO_URL = 'mongodb://testUser:password@localhost:27017/mern_practice';
 
 //export async function which gets tasks from tasks collection

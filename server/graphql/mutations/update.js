@@ -4,6 +4,7 @@ var GraphQLBoolean = require('graphql').GraphQLBoolean;
 var ItemType = require('../types/item');
 var ItemModel = require('../../models/item');
 
+//This file defines our update graphql mutation
 exports.update = {
   type: ItemType.itemType,
   args: {

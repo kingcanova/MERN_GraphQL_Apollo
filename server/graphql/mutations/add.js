@@ -4,6 +4,7 @@ var GraphQLBoolean = require('graphql').GraphQLBoolean;
 var ItemType = require('../types/item');
 var ItemModel = require('../../models/item');
 
+//This is our add mutation and resolver which is set up to work with our graphql server
 exports.add = {
   type: ItemType.itemType,
   args: {

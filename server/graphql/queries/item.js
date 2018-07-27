@@ -3,7 +3,7 @@ var GraphQLList = require('graphql').GraphQLList;
 var ItemModel = require('../../models/item');
 var itemType = require('../types/item').itemType;
 
-// Query
+//This file exports a basic graphql query which should return all of our tasks from the mongodb database
 exports.queryType = new GraphQLObjectType({
   name: 'Query',
   fields: function () {

@@ -4,7 +4,7 @@ var GraphQLID = require('graphql').GraphQLID;
 var GraphQLString = require('graphql').GraphQLString;
 var GraphQLBoolean = require('graphql').GraphQLBoolean;
 
-// Item Type
+// Item Type export defines what an Item in the database for graphql should be
 exports.itemType = new GraphQLObjectType({
   name: 'task',
   fields: function () {

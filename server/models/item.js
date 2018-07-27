@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
 // create new instance of the mongoose.schema. the schema takes an
-// object that shows the shape of your database entries.
+// object that shows the shape of our database entries.
 const itemSchema = new Schema({
   item: String,
   isDone: Boolean,

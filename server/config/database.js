@@ -1,8 +1,7 @@
+//This file uses config.js to connect to the mongo database using mongoose
 var env = process.env.NODE_ENV || 'production',
     config = require('./config')[env],
     mongoose = require('mongoose');
-var {MongoClient} = require('mongodb');
-var ItemModel = require('../models/item');
 module.exports = function () {
     mongoose.Promise = global.Promise;
     var db = mongoose.connect(config.db);
@@ -11,6 +10,5 @@ module.exports = function () {
     }).on('open', function () {
         console.log('Connection extablised with MongoDB')
     })
-    //console.log(ItemModel.find({item:"rage"}));
     return db;
 };

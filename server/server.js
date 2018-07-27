@@ -5,6 +5,7 @@ const cors = require("cors");
 const db = mongoose();
 const app = express();
 
+//This file defines the server side application and sets up our graphql endpoint for querys and mutations
 app.use('*', cors());
 
 const itemSchema = require('./graphql/index').itemSchema;
