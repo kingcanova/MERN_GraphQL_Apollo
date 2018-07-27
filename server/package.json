@@ -4,7 +4,7 @@
   "description": "The backend of my ToDo application",
   "main": "server.js",
   "scripts": {
-    "test": "jest --color --coverage -verbose -u"
+    "test": "jest --coverage"
   },
   "author": "Tristan Canova",
   "license": "ISC",

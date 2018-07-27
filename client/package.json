@@ -11,6 +11,7 @@
     "apollo-link-http": "^1.5.4",
     "axios": "^0.18.0",
     "bootstrap": "^4.1.2",
+    "enzyme": "^3.3.0",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
     "graphql-tester": "0.0.5",
@@ -20,13 +21,14 @@
     "react": "^16.4.1",
     "react-apollo": "^2.1.9",
     "react-dom": "^16.4.1",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "react-test-renderer": "^16.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "unittest": "jest"
+    "unittest": "jest --coverage"
   }
 }

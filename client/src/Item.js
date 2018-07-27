@@ -3,9 +3,13 @@ import gql from 'graphql-tag';
 import { graphql, Mutation, compose } from 'react-apollo';
 import { storeKeyNameFromField } from 'apollo-utilities';
 
-
+//This component is called from the tasks react component and passes all of the data displayed from its props
+//It is important to remember that when a setstate of a parent component is called it does not reload the state
+//of this component once it has been created, the only data that changes is the props passed down on a render
 class Item extends Component
 {
+    //In the constructor we set up our state and bind our methods to the parent methods in Tasks.js so that
+    //when they are called we can change and reflect the data changes in our UI
     constructor(props)
     {
         super(props);
@@ -61,7 +65,6 @@ class Item extends Component
 
     render()
     {
-        //console.log("items", this.state.tasks);
         return(
             this.props.tasks.map((currentTask)=>
                 <tr key={currentTask.id}>
@@ -77,5 +80,5 @@ class Item extends Component
     }
 }
 
-
+//At the end we simply export the Item component
 export default Item;
