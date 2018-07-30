@@ -15,11 +15,14 @@
     "babel-preset-react": "^6.24.1",
     "bootstrap": "^4.1.2",
     "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
     "graphql-tester": "0.0.5",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "23.3",
     "jest-cli": "^23.4.1",
+    "jest-css-modules-transform": "^2.0.0",
     "mongodb": "^3.1.1",
     "mongodb-memory-server": "^1.9.1",
     "react": "^16.4.1",
@@ -44,7 +47,8 @@
       ".*": "babel-jest"
     },
     "moduleNameMapper": {
-      "^mongoose$": "<rootDir>/node_modules/mongoose"
+      "^mongoose$": "<rootDir>/node_modules/mongoose",
+      "\\.(css|less)$": "identity-obj-proxy"
     }
   },
   "scripts": {
@@ -52,6 +56,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "unittest": "jest --coverage"
+    "unittest": "jest --coverage --env=jsdom"
   }
 }

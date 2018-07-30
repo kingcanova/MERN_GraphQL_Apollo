@@ -1,0 +1,255 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot of App component 1`] = `
+<div>
+   loading 
+</div>
+`;
+
+exports[`Snapshot of Item component 1`] = `
+<tr>
+  <td>
+    <input
+      checked={false}
+      className="checkbox"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <p
+      id="5b5f145e605ec80c819f5824"
+    >
+      one
+    </p>
+    <button
+      className="delete"
+      onClick={[Function]}
+    >
+       Delete Item 
+    </button>
+    <button
+      className="edit"
+      onClick={[Function]}
+    >
+       Edit Item
+    </button>
+  </td>
+</tr>
+`;
+
+exports[`Snapshot of Item component 2`] = `
+<tr>
+  <td>
+    <input
+      checked={false}
+      className="checkbox"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <p
+      id="5b5f145e605ec80c819f5824"
+    >
+      one
+    </p>
+    <button
+      className="delete"
+      onClick={[Function]}
+    >
+       Delete Item 
+    </button>
+    <button
+      className="edit"
+      onClick={[Function]}
+    >
+       Edit Item
+    </button>
+  </td>
+</tr>
+`;
+
+exports[`Snapshot of Tasks component 1`] = `
+<div
+  className="dataCenter"
+>
+  <form
+    className="table"
+    onSubmit={[Function]}
+  >
+    <input
+      onChange={[Function]}
+      value=""
+    />
+    <p
+      id="warning"
+    >
+       Please type in a unique item to add it to the To-Do list!
+    </p>
+    <button>
+      Submit
+    </button>
+  </form>
+  <div
+    className="tableDiv"
+  >
+    <table
+      className="table-bordered table-hover"
+    >
+      <tbody>
+        <tr>
+          <td>
+            <input
+              checked={false}
+              className="checkbox"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <p
+              id="5b5f145e605ec80c819f5824"
+            >
+              one
+            </p>
+            <button
+              className="delete"
+              onClick={[Function]}
+            >
+               Delete Item 
+            </button>
+            <button
+              className="edit"
+              onClick={[Function]}
+            >
+               Edit Item
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Snapshot of Tasks component 2`] = `
+<div
+  className="dataCenter"
+>
+  <form
+    className="table"
+    onSubmit={[Function]}
+  >
+    <input
+      onChange={[Function]}
+      value=""
+    />
+    <p
+      id="warning"
+    >
+       Please type in a unique item to add it to the To-Do list!
+    </p>
+    <button>
+      Submit
+    </button>
+  </form>
+  <div
+    className="tableDiv"
+  >
+    <table
+      className="table-bordered table-hover"
+    >
+      <tbody>
+        <tr>
+          <td>
+            <input
+              checked={false}
+              className="checkbox"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <p
+              id="5b5f145e605ec80c819f5824"
+            >
+              one
+            </p>
+            <button
+              className="delete"
+              onClick={[Function]}
+            >
+               Delete Item 
+            </button>
+            <button
+              className="edit"
+              onClick={[Function]}
+            >
+               Edit Item
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Snapshot of Tasks component 3`] = `
+<div
+  className="dataCenter"
+>
+  <form
+    className="table"
+    onSubmit={[Function]}
+  >
+    <input
+      onChange={[Function]}
+      value=""
+    />
+    <p
+      id="warning"
+    >
+       Please type in a unique item to add it to the To-Do list!
+    </p>
+    <button>
+      Submit
+    </button>
+  </form>
+  <div
+    className="tableDiv"
+  >
+    <table
+      className="table-bordered table-hover"
+    >
+      <tbody />
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Snapshot of Tasks component 4`] = `
+<div
+  className="dataCenter"
+>
+  <form
+    className="table"
+    onSubmit={[Function]}
+  >
+    <input
+      onChange={[Function]}
+      value=""
+    />
+    <p
+      id="warning"
+    >
+       Please type in a unique item to add it to the To-Do list!
+    </p>
+    <button>
+      Submit
+    </button>
+  </form>
+  <div
+    className="tableDiv"
+  >
+    <table
+      className="table-bordered table-hover"
+    >
+      <tbody />
+    </table>
+  </div>
+</div>
+`;

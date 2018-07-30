@@ -71,8 +71,8 @@ class Item extends Component
                     <td>
                         <input type="checkbox" checked={currentTask.isDone} className = "checkbox" onChange={() => this.checkTask(currentTask)} />
                         <p id={currentTask.id}>{currentTask.item}</p>
-                        <button onClick={()=> this.deleteTask(currentTask)}> Delete Item </button>
-                        <button onClick={()=> this.editButton(currentTask)}> Edit Item</button>
+                        <button className="delete" onClick={()=> this.deleteTask(currentTask)}> Delete Item </button>
+                        <button className="edit" onClick={()=> this.editButton(currentTask)}> Edit Item</button>
                     </td>
                 </tr>
             )
