@@ -42,7 +42,17 @@ describe('GraphQl Query', () => {
 
     const update = `
     mutation updateItem {
-        updateItem(id: "5b50f2e8d380f828b2d98b30", item: "WOOT", isDone: true){
+        updateItem(id: "5b50f2e8d380f828b2d98b30", item: "WOOT"){
+            id
+            item
+            isDone
+        }
+    }`;
+
+    const updateDone = `
+    mutation updateDone {
+        updateDone(id: "5b50f2e8d380f828b2d98b30", isDone: false)
+        {
             id
             item
             isDone
@@ -87,6 +97,13 @@ describe('GraphQl Query', () => {
                 console.log(result);
             })
         );
+    });
+    test('updateDone done successfully', async () =>{
+        return await expect(
+            graphql(schema,updateDone).then((result) => {
+                console.log(result);
+            })
+        )
     });
     test('remove successfully', async () => {
         return await expect(
