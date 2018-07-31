@@ -22,6 +22,10 @@
   font-size: large;
 }
 
+p[contenteditable="true"] {
+  border: 1px dotted red;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

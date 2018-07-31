@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import gql from 'graphql-tag';
-import Item from './Item';
 import {graphql, compose} from 'react-apollo';
+import TableItem from './TableItem';
 
 //This class/react component is called from App.js and handles our graphql data changes and the state of the data
 //for our item list/table
@@ -18,7 +18,6 @@ class Tasks extends Component
         };
         //Here we manually bind our methods because they do not automatically bind
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.changeText = this.changeText.bind(this);
         
     }
 
@@ -66,32 +65,11 @@ class Tasks extends Component
             });
         }
     }
+
     //This method allows for the text inside the text-input box to appear when a user types
     onChange = (event) =>
     {
         this.setState({term: event.target.value});
-    }
-
-    //This method is called when a user wants the edit a tasks value, it calls the graphql update item mutation
-    //and updates the item in the database as well as updates the items value in the Tasks state
-    changeText(task,newText)
-    {
-        this.props.updateItem({
-            variables:{
-                id: task.id,
-                item: newText,
-                isDone: task.isDone
-            },
-            update: (store, {data:{updateItem}}) =>
-            {
-                const data = this.state.tasks.slice();
-                const index = data.findIndex(task => task.id === updateItem.id);
-                data[index] = updateItem;
-                this.setState({
-                    tasks: data
-                });
-            }
-        });
     }
 
     //This method is called when a user checks off a task in the UI
@@ -99,17 +77,17 @@ class Tasks extends Component
     //in the rendered data
     checkTask(task)
     {
-        this.props.updateItem({
+        this.props.updateDone({
             variables:{
                 id: task.id,
                 item: task.item,
                 isDone: !task.isDone
             },
-            update: (store, {data:{updateItem}}) =>
+            update: (store, {data:{updateDone}}) =>
             {
                 const data = this.state.tasks.slice();
-                const index = data.findIndex(task => task.id === updateItem.id);
-                data[index] = updateItem;
+                const index = data.findIndex(task => task.id === updateDone.id);
+                data[index] = updateDone;
                 this.setState({
                     tasks: data
                 });
@@ -117,6 +95,7 @@ class Tasks extends Component
             }
         });
     }
+
     //This function is called when a user presses delete on a to-do item, it calls the remove graphql mutation
     //and then removes the item from the state aswell
     deleteTask(task)
@@ -138,7 +117,7 @@ class Tasks extends Component
     }
 
     //In this render we create our form for when a user wants to add a new task and 
-    //we call the Item react component to create our table rows filled with all of the tasks from our database
+    //we set up our table and call the TableItem component to fill the table with our components and data
     render()
     {
         return(
@@ -151,7 +130,17 @@ class Tasks extends Component
                 <div className="tableDiv">
                     <table className="table-bordered table-hover">
                         <tbody>
-                            <Item tasks={this.state.tasks} deleteTask={this.deleteTask.bind(this)} checkTask={this.checkTask.bind(this)} changeText={this.changeText.bind(this)}/>
+                            {
+                                this.state.tasks.map((currentTask) =>
+                                <tr key={currentTask.id}>
+                                    <td>
+                                        <input type="checkbox" checked={currentTask.isDone} className = "checkbox" onChange={() => this.checkTask(currentTask)} />
+                                        <TableItem task={currentTask} />
+                                        <button className="delete" onClick={()=> this.deleteTask(currentTask)}> Delete Item </button>
+                                    </td>
+                                </tr>
+                                )
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -190,8 +179,8 @@ const ADD_TODO = gql`
     }`;
 
 const markCompletedQuery = gql`
-    mutation updateItem($id: String!, $item: String! $isDone: Boolean!) {
-        updateItem(id: $id, item: $item, isDone: $isDone){
+    mutation updateDone($id: String!, $isDone: Boolean!) {
+        updateDone(id: $id, isDone: $isDone){
             id
             item
             isDone
@@ -202,4 +191,4 @@ const markCompletedQuery = gql`
 //the task component itself
 export default compose(graphql(deleteItem,{name: 'removeItem'}),
 graphql(taskQuery,{name: 'getTasks'}),
-graphql(ADD_TODO,{name: 'addItem'}),graphql(markCompletedQuery,{name: 'updateItem'}))(Tasks);
+graphql(ADD_TODO,{name: 'addItem'}),graphql(markCompletedQuery,{name: 'updateDone'}))(Tasks);
