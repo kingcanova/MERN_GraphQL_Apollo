@@ -6,64 +6,68 @@ exports[`Snapshot of App component 1`] = `
 </div>
 `;
 
-exports[`Snapshot of Item component 1`] = `
-<tr>
-  <td>
-    <input
-      checked={false}
-      className="checkbox"
-      onChange={[Function]}
-      type="checkbox"
-    />
-    <p
-      id="5b5f145e605ec80c819f5824"
-    >
-      one
-    </p>
-    <button
-      className="delete"
-      onClick={[Function]}
-    >
-       Delete Item 
-    </button>
-    <button
-      className="edit"
-      onClick={[Function]}
-    >
-       Edit Item
-    </button>
-  </td>
-</tr>
+exports[`Snapshot of TableItem component 1`] = `
+<div>
+  <p
+    id="5b5f145e605ec80c819f5824"
+  >
+    one
+  </p>
+  <button
+    className="edit"
+    onClick={[Function]}
+  >
+     Edit Item
+  </button>
+</div>
 `;
 
-exports[`Snapshot of Item component 2`] = `
-<tr>
-  <td>
-    <input
-      checked={false}
-      className="checkbox"
-      onChange={[Function]}
-      type="checkbox"
-    />
-    <p
-      id="5b5f145e605ec80c819f5824"
-    >
-      one
-    </p>
-    <button
-      className="delete"
-      onClick={[Function]}
-    >
-       Delete Item 
-    </button>
-    <button
-      className="edit"
-      onClick={[Function]}
-    >
-       Edit Item
-    </button>
-  </td>
-</tr>
+exports[`Snapshot of TableItem component 2`] = `
+<div>
+  <input
+    onChange={[Function]}
+    value="one"
+  />
+  <p />
+  <button
+    className="save"
+    onClick={[Function]}
+  >
+     Save Item
+  </button>
+</div>
+`;
+
+exports[`Snapshot of TableItem component 3`] = `
+<div>
+  <input
+    onChange={[Function]}
+    value="wow"
+  />
+  <p />
+  <button
+    className="save"
+    onClick={[Function]}
+  >
+     Save Item
+  </button>
+</div>
+`;
+
+exports[`Snapshot of TableItem component 4`] = `
+<div>
+  <input
+    onChange={[Function]}
+    value="wow"
+  />
+  <p />
+  <button
+    className="save"
+    onClick={[Function]}
+  >
+     Save Item
+  </button>
+</div>
 `;
 
 exports[`Snapshot of Tasks component 1`] = `
@@ -78,11 +82,7 @@ exports[`Snapshot of Tasks component 1`] = `
       onChange={[Function]}
       value=""
     />
-    <p
-      id="warning"
-    >
-       Please type in a unique item to add it to the To-Do list!
-    </p>
+    <p />
     <button>
       Submit
     </button>
@@ -97,27 +97,58 @@ exports[`Snapshot of Tasks component 1`] = `
         <tr>
           <td>
             <input
-              checked={false}
+              checked={true}
               className="checkbox"
               onChange={[Function]}
               type="checkbox"
             />
-            <p
-              id="5b5f145e605ec80c819f5824"
-            >
-              one
-            </p>
+            <div>
+              <p
+                id="5b5f145e605ec80c819f5825"
+              >
+                one
+              </p>
+              <button
+                className="edit"
+                onClick={[Function]}
+              >
+                 Edit Item
+              </button>
+            </div>
             <button
               className="delete"
               onClick={[Function]}
             >
                Delete Item 
             </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input
+              checked={true}
+              className="checkbox"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <div>
+              <p
+                id="5b5f145e605ec80c819f5826"
+              >
+                two
+              </p>
+              <button
+                className="edit"
+                onClick={[Function]}
+              >
+                 Edit Item
+              </button>
+            </div>
             <button
-              className="edit"
+              className="delete"
               onClick={[Function]}
             >
-               Edit Item
+               Delete Item 
             </button>
           </td>
         </tr>
@@ -139,11 +170,7 @@ exports[`Snapshot of Tasks component 2`] = `
       onChange={[Function]}
       value=""
     />
-    <p
-      id="warning"
-    >
-       Please type in a unique item to add it to the To-Do list!
-    </p>
+    <p />
     <button>
       Submit
     </button>
@@ -158,27 +185,58 @@ exports[`Snapshot of Tasks component 2`] = `
         <tr>
           <td>
             <input
-              checked={false}
+              checked={true}
               className="checkbox"
               onChange={[Function]}
               type="checkbox"
             />
-            <p
-              id="5b5f145e605ec80c819f5824"
-            >
-              one
-            </p>
+            <div>
+              <p
+                id="5b5f145e605ec80c819f5825"
+              >
+                one
+              </p>
+              <button
+                className="edit"
+                onClick={[Function]}
+              >
+                 Edit Item
+              </button>
+            </div>
             <button
               className="delete"
               onClick={[Function]}
             >
                Delete Item 
             </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input
+              checked={true}
+              className="checkbox"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <div>
+              <p
+                id="5b5f145e605ec80c819f5826"
+              >
+                two
+              </p>
+              <button
+                className="edit"
+                onClick={[Function]}
+              >
+                 Edit Item
+              </button>
+            </div>
             <button
-              className="edit"
+              className="delete"
               onClick={[Function]}
             >
-               Edit Item
+               Delete Item 
             </button>
           </td>
         </tr>
@@ -200,11 +258,7 @@ exports[`Snapshot of Tasks component 3`] = `
       onChange={[Function]}
       value=""
     />
-    <p
-      id="warning"
-    >
-       Please type in a unique item to add it to the To-Do list!
-    </p>
+    <p />
     <button>
       Submit
     </button>
@@ -215,13 +269,395 @@ exports[`Snapshot of Tasks component 3`] = `
     <table
       className="table-bordered table-hover"
     >
-      <tbody />
+      <tbody>
+        <tr>
+          <td>
+            <input
+              checked={true}
+              className="checkbox"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <div>
+              <p
+                id="5b5f145e605ec80c819f5826"
+              >
+                two
+              </p>
+              <button
+                className="edit"
+                onClick={[Function]}
+              >
+                 Edit Item
+              </button>
+            </div>
+            <button
+              className="delete"
+              onClick={[Function]}
+            >
+               Delete Item 
+            </button>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </div>
 `;
 
-exports[`Snapshot of Tasks component 4`] = `
+exports[`Snapshot of Tasks component take two 1`] = `
+<div
+  className="dataCenter"
+>
+  <form
+    className="table"
+    onSubmit={[Function]}
+  >
+    <input
+      onChange={[Function]}
+      value=""
+    />
+    <p />
+    <button>
+      Submit
+    </button>
+  </form>
+  <div
+    className="tableDiv"
+  >
+    <table
+      className="table-bordered table-hover"
+    >
+      <tbody>
+        <tr>
+          <td>
+            <input
+              checked={true}
+              className="checkbox"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <div>
+              <p
+                id="5b5f145e605ec80c819f5825"
+              >
+                one
+              </p>
+              <button
+                className="edit"
+                onClick={[Function]}
+              >
+                 Edit Item
+              </button>
+            </div>
+            <button
+              className="delete"
+              onClick={[Function]}
+            >
+               Delete Item 
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input
+              checked={true}
+              className="checkbox"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <div>
+              <p
+                id="5b5f145e605ec80c819f5826"
+              >
+                two
+              </p>
+              <button
+                className="edit"
+                onClick={[Function]}
+              >
+                 Edit Item
+              </button>
+            </div>
+            <button
+              className="delete"
+              onClick={[Function]}
+            >
+               Delete Item 
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Snapshot of Tasks component take two 2`] = `
+<div
+  className="dataCenter"
+>
+  <form
+    className="table"
+    onSubmit={[Function]}
+  >
+    <input
+      onChange={[Function]}
+      value="cool"
+    />
+    <p />
+    <button>
+      Submit
+    </button>
+  </form>
+  <div
+    className="tableDiv"
+  >
+    <table
+      className="table-bordered table-hover"
+    >
+      <tbody>
+        <tr>
+          <td>
+            <input
+              checked={true}
+              className="checkbox"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <div>
+              <p
+                id="5b5f145e605ec80c819f5825"
+              >
+                one
+              </p>
+              <button
+                className="edit"
+                onClick={[Function]}
+              >
+                 Edit Item
+              </button>
+            </div>
+            <button
+              className="delete"
+              onClick={[Function]}
+            >
+               Delete Item 
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input
+              checked={true}
+              className="checkbox"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <div>
+              <p
+                id="5b5f145e605ec80c819f5826"
+              >
+                two
+              </p>
+              <button
+                className="edit"
+                onClick={[Function]}
+              >
+                 Edit Item
+              </button>
+            </div>
+            <button
+              className="delete"
+              onClick={[Function]}
+            >
+               Delete Item 
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Snapshot of Tasks component take two 3`] = `
+<div
+  className="dataCenter"
+>
+  <form
+    className="table"
+    onSubmit={[Function]}
+  >
+    <input
+      onChange={[Function]}
+      value="cool"
+    />
+    <p />
+    <button>
+      Submit
+    </button>
+  </form>
+  <div
+    className="tableDiv"
+  >
+    <table
+      className="table-bordered table-hover"
+    >
+      <tbody>
+        <tr>
+          <td>
+            <input
+              checked={true}
+              className="checkbox"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <div>
+              <p
+                id="5b5f145e605ec80c819f5825"
+              >
+                one
+              </p>
+              <button
+                className="edit"
+                onClick={[Function]}
+              >
+                 Edit Item
+              </button>
+            </div>
+            <button
+              className="delete"
+              onClick={[Function]}
+            >
+               Delete Item 
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input
+              checked={true}
+              className="checkbox"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <div>
+              <p
+                id="5b5f145e605ec80c819f5826"
+              >
+                two
+              </p>
+              <button
+                className="edit"
+                onClick={[Function]}
+              >
+                 Edit Item
+              </button>
+            </div>
+            <button
+              className="delete"
+              onClick={[Function]}
+            >
+               Delete Item 
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Snapshot test of Tasks component TAKE 3 1`] = `
+<div
+  className="dataCenter"
+>
+  <form
+    className="table"
+    onSubmit={[Function]}
+  >
+    <input
+      onChange={[Function]}
+      value=""
+    />
+    <p />
+    <button>
+      Submit
+    </button>
+  </form>
+  <div
+    className="tableDiv"
+  >
+    <table
+      className="table-bordered table-hover"
+    >
+      <tbody>
+        <tr>
+          <td>
+            <input
+              checked={true}
+              className="checkbox"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <div>
+              <p
+                id="5b5f145e605ec80c819f5825"
+              >
+                one
+              </p>
+              <button
+                className="edit"
+                onClick={[Function]}
+              >
+                 Edit Item
+              </button>
+            </div>
+            <button
+              className="delete"
+              onClick={[Function]}
+            >
+               Delete Item 
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input
+              checked={true}
+              className="checkbox"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <div>
+              <p
+                id="5b5f145e605ec80c819f5826"
+              >
+                two
+              </p>
+              <button
+                className="edit"
+                onClick={[Function]}
+              >
+                 Edit Item
+              </button>
+            </div>
+            <button
+              className="delete"
+              onClick={[Function]}
+            >
+               Delete Item 
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Snapshot test of Tasks component TAKE 3 2`] = `
 <div
   className="dataCenter"
 >
@@ -248,7 +684,66 @@ exports[`Snapshot of Tasks component 4`] = `
     <table
       className="table-bordered table-hover"
     >
-      <tbody />
+      <tbody>
+        <tr>
+          <td>
+            <input
+              checked={true}
+              className="checkbox"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <div>
+              <p
+                id="5b5f145e605ec80c819f5825"
+              >
+                one
+              </p>
+              <button
+                className="edit"
+                onClick={[Function]}
+              >
+                 Edit Item
+              </button>
+            </div>
+            <button
+              className="delete"
+              onClick={[Function]}
+            >
+               Delete Item 
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input
+              checked={true}
+              className="checkbox"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <div>
+              <p
+                id="5b5f145e605ec80c819f5826"
+              >
+                two
+              </p>
+              <button
+                className="edit"
+                onClick={[Function]}
+              >
+                 Edit Item
+              </button>
+            </div>
+            <button
+              className="delete"
+              onClick={[Function]}
+            >
+               Delete Item 
+            </button>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </div>

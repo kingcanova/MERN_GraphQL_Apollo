@@ -23,11 +23,12 @@ describe('Graphql quieries should be able to', function()
                       }`,
                       variables: {
                           item: "Get new Item added from unit test",
-                          isDone: true
+                          isDone: false
                       }
                 })
             ).then(res => {
                 self.tempID = res.data.addItem.id;
+                console.log(self.tempID);
                 expect(res.data.addItem.item).toBe("Get new Item added from unit test");
                 expect(res.status).toBe(200);
                 expect(res.success).toBe(true);
@@ -37,7 +38,7 @@ describe('Graphql quieries should be able to', function()
                 done();
             });
     });
-    it('fetch previously added test item with all correct variables', done =>{
+    it('fetch previously added test item with all correct variables THIS WILL NOT WORK IF YOUR GRAPHQL DATABASE HAS ITEMS IN IT ALREADY', done =>{
         self
             .test(
                 JSON.stringify({
@@ -50,10 +51,10 @@ describe('Graphql quieries should be able to', function()
                       }`,
                 })
             ).then(res => {
-                //console.log(res.data.tasks[0]);
+                console.log(res.data.tasks);
                 expect(res.data.tasks[0].id).toBe(self.tempID);
                 expect(res.data.tasks[0].item).toBe("Get new Item added from unit test");
-                expect(res.data.tasks[0].isDone).toBe(true);
+                expect(res.data.tasks[0].isDone).toBe(false);
                 expect(res.success).toBe(true);
                 expect(res.status).toBe(200);
                 done();
@@ -66,8 +67,8 @@ describe('Graphql quieries should be able to', function()
         self
             .test(
                 JSON.stringify({
-                    query:`mutation updateItem($id: String!, $item: String! $isDone: Boolean!) {
-                        updateItem(id: $id, item: $item, isDone: $isDone){
+                    query:`mutation updateItem($id: String!, $item: String!) {
+                        updateItem(id: $id, item: $item){
                             id
                             item
                             isDone
@@ -75,8 +76,7 @@ describe('Graphql quieries should be able to', function()
                     }`,
                     variables: {
                         id: self.tempID,
-                        item: "Updated the item to have a new item value",
-                        isDone: false
+                        item: "Updated the item to have a new item value"
 
                     }
                 })

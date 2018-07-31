@@ -9,8 +9,9 @@ import {HttpLink} from 'apollo-link-http';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import fetch from 'node-fetch';
 import Tasks from '../src/Tasks';
-import Item from '../src/Item';
+import TableItem from '../src/TableItem';
 import Adapter from 'enzyme-adapter-react-16';
+import toJSON from 'enzyme-to-json';
 
 
 
@@ -40,62 +41,25 @@ describe('Run <App />', () => {
                 <App />
             </ApolloProvider>
         );
-        //const component = shallow(<App />);
-        //expect(component).toHaveLength(1);
-        //expect(rendered).toHaveLength(1);
         expect(rendered).toBeTruthy();
-        //console.log(rendered.root);
     });
 
-    it('shallow renders our <App /> component', () => {
-        const component = shallow(<App />);
-        const taskComponent = shallow(<Tasks />);
-        //const itemComponent = shallow(<Item tasks=/>);
-        //console.log(data);
-        //console.log(itemComponent.instance().props);
-        expect(taskComponent).toHaveLength(1);
-        expect(component).toHaveLength(1);
-        //console.log(component.instance());
-        //console.log(taskComponent.instance());
-        //console.log(itemComponent);
-        //console.log(data);
-    });
     it('Mount our <App /> component', ()=> {
         const appComp = mount(
             <ApolloProvider client={client}>
                 <App />
             </ApolloProvider>
         );
-        //console.log(appComp);
+        expect(appComp).toBeTruthy();
     });
-
-    /*it('Testing methods from <Task /> component', () => {
-        const component = mount(<ApolloProvider client={client}>
-            <Tasks tasks={id: 1, item:"shiz",isDone:false}/>
-        </ApolloProvider>);
-        //console.log()
-        console.log(data);
-    });*/
 
     it('Testing methods from <Task /> component shallow', () => {
         const taskComponent = shallow(<Tasks data={tasks}/>);
-        //console.log(taskComponent.state);
+        taskComponent.setState({term:' '});
+
+        let tree = toJSON(taskComponent);
+        expect(tree).toMatchSnapshot();
     });
     
-    it('Item testing', () => {
-        const spy = jest.fn();
-        const itemComponent = mount(<Item tasks={tasks} checkTask={spy} changeText={spy} deleteTask={spy}/>);
-        const checkBox = itemComponent.find('.checkbox').simulate('change');
-        //const editButton = itemComponent.find('.edit').simulate('click');
-        const deleteButton = itemComponent.find('.delete').simulate('click');
-        expect(spy).toHaveBeenCalled();
-    });
-    describe('Clicking some buttons', () => {
-        const spy = jest.fn();
-        const wrapper = shallow(<Item tasks={tasks} checkTask={spy}/>);
-        //console.log(wrapper);
-        //console.log(wrapper.find('.checkbox'));
-        //wrapper.find('.checkbox').simulate('click');
-    });
 
 });

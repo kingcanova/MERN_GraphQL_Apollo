@@ -14,7 +14,8 @@ class Tasks extends Component
         this.state = {
             term: '',
             error: null,
-            tasks: this.props.data
+            tasks: this.props.data,
+            warning: false
         };
         //Here we manually bind our methods because they do not automatically bind
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,19 +30,16 @@ class Tasks extends Component
         if(this.state.term.replace(/^\s+/g, '').length < 1)
         {
             //If they havent typed in an item to the textbox we display a warning to let them know
-            var warning = document.getElementById('warning');
-            warning.style.visibility = "visible";
             this.setState(
             {
-                term: ''
+                term: '',
+                warning: true
             });
             return;
         }
         else
         {
             //We get here if a non empty string for a to-do list item is entered
-            var warning = document.getElementById('warning');
-            warning.style.visibility = "hidden";
 
             //In this call we are making a mutation call to graphql to add the new to-do item to the database 
             //In the update part of the function we also add the new item to the current Tasks state so it will
@@ -57,7 +55,8 @@ class Tasks extends Component
                 {
                     this.setState({
                         term: '',
-                        tasks: [...this.state.tasks,addItem]
+                        tasks: [...this.state.tasks,addItem],
+                        warning: false
                     });
                 }
             }).then(function getResponse(response){
@@ -115,6 +114,17 @@ class Tasks extends Component
         }));
         
     }
+    showWarning()
+    {
+        if(this.state.warning)
+        {
+            return(<p id="warning"> Please type in a unique item to add it to the To-Do list!</p>)
+        }
+        else
+        {
+            return(<p></p>)
+        }
+    }
 
     //In this render we create our form for when a user wants to add a new task and 
     //we set up our table and call the TableItem component to fill the table with our components and data
@@ -124,7 +134,9 @@ class Tasks extends Component
             <div className="dataCenter">
                 <form className="table" onSubmit={this.handleSubmit}>
                     <input value={this.state.term} onChange={this.onChange}/>
-                    <p id="warning"> Please type in a unique item to add it to the To-Do list!</p>
+                    {
+                        this.showWarning()
+                    }
                     <button>Submit</button>
                 </form>
                 <div className="tableDiv">
